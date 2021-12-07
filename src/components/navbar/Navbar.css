@@ -1,0 +1,16 @@
+.navbar-container {
+  padding-bottom: 50px;
+}
+.navbar {
+  background-color: var(--brand-primary-color);
+  overflow: hidden;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.navbar-brand,
+.navbar-cart {
+  margin: 0 10px;
+  padding: 10px;
+}
