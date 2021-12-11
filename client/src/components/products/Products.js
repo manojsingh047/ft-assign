@@ -17,7 +17,7 @@ function Products() {
     dispatch({ type: actions.SET_PRODUCTS_CNT });
   };
 
-  const productsInRange = products.slice(0, state.productsLimit);
+  const productsInRange = (products || []).slice(0, state.productsLimit);
 
   const renderedProducts = productsInRange.map((product) => (
     <div className="product border" key={product.productId}>

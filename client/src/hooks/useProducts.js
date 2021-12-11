@@ -3,12 +3,15 @@ import { dummy } from "../dummy";
 import { ENDPOINTS } from "../constants/Endpoints";
 
 const getProducts = async () => {
-  // const productsData = await fetch(ENDPOINTS.products);
+  const productsData = await fetch(ENDPOINTS.products);
   //todo - update endpoints to return json
-  // const products = await productsData.json();
-  return dummy || [];
+  const productsJSON = await productsData.json();
+  return productsJSON.products;
+  // return dummy || [];
 };
 
 export default function useProducts() {
-  return useQuery("products", getProducts);
+  return useQuery("products", getProducts, {
+    staleTime: Infinity,
+  });
 }

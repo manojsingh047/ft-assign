@@ -7,7 +7,7 @@ const port = 4000;
 app.get("/products", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
+      "https://run.mocky.io/v3/05e9651d-528e-4d7c-a60b-bae8f09684c6"
     );
     console.log({ response });
     // const headerDate = data.headers && data.headers.date ? data.headers.date : "no response date";
