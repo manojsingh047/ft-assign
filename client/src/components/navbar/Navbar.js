@@ -4,7 +4,7 @@ import { store } from "../state/state";
 import "./Navbar.css";
 
 function Navbar() {
-  const { state, dispatch } = useContext(store);
+  const { state } = useContext(store);
 
   return (
     <header className="navbar-container">

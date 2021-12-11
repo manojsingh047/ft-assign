@@ -6,7 +6,7 @@ function InfiniteScroll({ items, lastRowHandler }) {
   useEffect(() => {
     // last row visible, call the last row handler
     isInCurrentView && lastRowHandler();
-  }, [isInCurrentView]);
+  }, [isInCurrentView, lastRowHandler]);
 
   const isLastItem = useCallback(
     (curIdx) => {
