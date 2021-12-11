@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext } from "react";
 import useProducts from "../../hooks/useProducts";
 import { actions, store } from "../state/state";
 import VirtualInfiniteScroll from "../virtual-infinite-scroll/VirtualInfiniteScroll";
@@ -8,16 +8,17 @@ function Products() {
   const { data: products, isLoading } = useProducts();
   const { state, dispatch } = useContext(store);
 
+  const handleLastRow = useCallback(() => {
+    dispatch({ type: actions.SET_PRODUCTS_CNT });
+  }, [dispatch]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   console.log({ products });
-  const handleLastRow = () => {
-    dispatch({ type: actions.SET_PRODUCTS_CNT });
-  };
 
-  const productsInRange = (products || []).slice(0, state.productsLimit);
+  const productsInRange = products.slice(0, state.productsLimit);
 
   const renderedProducts = productsInRange.map((product) => (
     <div className="product border" key={product.productId}>

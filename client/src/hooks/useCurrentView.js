@@ -4,19 +4,16 @@ export const useCurrentView = () => {
   const [inView, setInView] = useState(false);
   const [ref, setRef] = useState(null);
 
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0,
-  };
-
   const handleIntersection = (entries) => {
     setInView(entries[0].isIntersecting);
   };
 
-  const observer = new IntersectionObserver(handleIntersection, options);
-
   useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+    });
     if (ref) {
       observer.observe(ref);
     }
