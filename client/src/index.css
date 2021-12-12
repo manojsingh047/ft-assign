@@ -2,6 +2,11 @@
   --brand-primary-color: rgb(108, 108, 189);
   --brand-secondary-color: rgb(122, 33, 33);
   --font-color: rgb(0, 0, 0);
+  --btn-bg-color: #ff9f00;
+  --btn-color: #fff;
+  --btn-cart-bg-color: #d7d7d7;
+  --btn-cart-bg-color-hover: #fcfcfc;
+  --brand-font-color: #fff;
 }
 
 body {
@@ -17,11 +22,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+a,
+p,
+button {
+  margin: 0;
+  text-decoration: none;
+}
 
 /* Helper Classes */
-
+.transition-duration {
+  transition-duration: 0.3s;
+}
 .flex {
   display: flex;
+}
+.flex-column {
+  flex-direction: column;
 }
 .items-center {
   align-items: center;
@@ -35,6 +51,12 @@ code {
 .pointer {
   cursor: pointer;
 }
+.border-radius {
+  border-radius: 3px;
+}
 .border {
   border: 1px solid red;
+}
+.text-center {
+  text-align: center;
 }

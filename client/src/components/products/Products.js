@@ -1,5 +1,6 @@
 import { useCallback, useContext } from "react";
 import useProducts from "../../hooks/useProducts";
+import ProductItem from "../product-item/ProductItem";
 import { actions, store } from "../state/state";
 import VirtualInfiniteScroll from "../virtual-infinite-scroll/VirtualInfiniteScroll";
 import "./Products.css";
@@ -13,27 +14,13 @@ function Products() {
   }, [dispatch]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="loader text-center">Loading...</div>;
   }
-
-  console.log({ products });
 
   const productsInRange = products.slice(0, state.productsLimit);
 
   const renderedProducts = productsInRange.map((product) => (
-    <div className="product border" key={product.productId}>
-      <h3>{product.productId}</h3>
-      <h3>{product.brand}</h3>
-      <p>{product.additionalInfo}</p>
-      <p
-        className="product-add-cart pointer"
-        onClick={() => {
-          dispatch({ type: actions.ADD_ITEMS_TO_CART, payload: product });
-        }}
-      >
-        Add to cart
-      </p>
-    </div>
+    <ProductItem product={product} />
   ));
 
   return (

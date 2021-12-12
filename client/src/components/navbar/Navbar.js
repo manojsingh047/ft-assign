@@ -9,10 +9,15 @@ function Navbar() {
   return (
     <header className="navbar-container">
       <div className="navbar flex justify-between items-center">
-        <div className="navbar-brand">FT ASSIGN</div>
-        <div className="navbar-cart border pointer">
-          <Link to="cart">Cart ({state.cartItems.length})</Link>
-        </div>
+        <Link to="/">
+          <div className="navbar-brand">FT ASSIGN</div>
+        </Link>
+
+        <Link to="cart">
+          <div className="border-radius navbar-cart pointer transition-duration">
+            Cart ({state.cartItems.length})
+          </div>
+        </Link>
       </div>
     </header>
   );

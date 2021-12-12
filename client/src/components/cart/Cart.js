@@ -1,35 +1,35 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
+import CartItem from "../cart-item/CartItem";
 import { actions, store } from "../state/state";
-
+import "./Cart.css";
 function Cart() {
   const { state, dispatch } = useContext(store);
 
-  const cartItemsEle = state.cartItems.map((item) => (
-    <div className="cart-item" key={item.productId}>
-      <h3>{item.productId}</h3>
-      <h3>{item.brand}</h3>
-      <p>{item.additionalInfo}</p>
-      <p
-        onClick={() => {
-          dispatch({
-            type: actions.REMOVE_ITEMS_FROM_CART,
-            payload: item.productId,
-          });
-        }}
-      >
-        remove from cart
-      </p>
+  if (state.cartItems.length === 0) {
+    return (
+      <div className="cart-empty flex items-center flex-column">
+        <h2>Your cart is empty</h2>
+        <Link to="/">
+          <h3>Continue shopping</h3>
+        </Link>
+      </div>
+    );
+  }
 
-      <div className="cart-item-image"></div>
-    </div>
+  const cartItemsEle = state.cartItems.map((product) => (
+    <CartItem key={product.productId} product={product} />
   ));
   return (
-    <div className="cart-container">
-      <Link to="/">Back</Link>
-      <div className="cart-header">Cart Items</div>
-      <div className="cart-body">{cartItemsEle}</div>
-    </div>
+    <>
+      <h4 className="cart-back">
+        <Link to="/">Back</Link>
+      </h4>
+      <div className="cart-container flex flex-column items-center">
+        <h2 className="text-center">Cart Items</h2>
+        <div className="cart-body">{cartItemsEle}</div>
+      </div>
+    </>
   );
 }
 

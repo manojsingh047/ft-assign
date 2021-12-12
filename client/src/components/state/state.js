@@ -26,6 +26,12 @@ export const StateProvider = ({ children }) => {
           productsLimit: state.productsLimit + PRODUCTS_CNT,
         };
       case actions.ADD_ITEMS_TO_CART:
+        const isAlreadyInCart = state.cartItems.some(
+          (item) => item.productId === action.payload.productId
+        );
+        if (isAlreadyInCart) {
+          return state;
+        }
         return {
           ...state,
           cartItems: [...state.cartItems, action.payload],
