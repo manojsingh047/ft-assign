@@ -12,7 +12,7 @@ function CartItem({ product }) {
         key={product.productId}
       >
         <div className="cart-img">
-          <img src={product.searchImage} />
+          <img src={product.searchImage} alt={product.additionalInfo} />
         </div>
         <div className="cart-info text-center">
           <p>{product.brand}</p>

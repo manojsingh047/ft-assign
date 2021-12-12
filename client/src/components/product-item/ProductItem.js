@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { actions, store } from "../state/state";
 
 function ProductItem({ product }) {
-  const { state, dispatch } = useContext(store);
+  const { dispatch } = useContext(store);
 
   return (
     <div
