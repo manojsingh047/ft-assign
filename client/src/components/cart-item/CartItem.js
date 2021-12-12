@@ -19,6 +19,7 @@ function CartItem({ product }) {
           <p>
             {product.additionalInfo} ({product.productId})
           </p>
+          <p className="strong ">Rs {product.price}</p>
         </div>
         <button
           className="border-radius cart-add-cart pointer"

@@ -1,10 +1,15 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "../cart-item/CartItem";
 import { actions, store } from "../state/state";
 import "./Cart.css";
 function Cart() {
   const { state, dispatch } = useContext(store);
+  const total = useMemo(() => {
+    return state.cartItems.reduce((acc, product) => {
+      return acc + product.price;
+    }, 0);
+  }, [state.cartItems]);
 
   if (state.cartItems.length === 0) {
     return (
@@ -26,7 +31,7 @@ function Cart() {
         <Link to="/">Back</Link>
       </h4>
       <div className="cart-container flex flex-column items-center">
-        <h2 className="text-center">Cart Items</h2>
+        <h2 className="text-center">Cart Items, Total Price - {total}</h2>
         <div className="cart-body">{cartItemsEle}</div>
       </div>
     </>
