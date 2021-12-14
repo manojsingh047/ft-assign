@@ -1,17 +1,19 @@
-import { Fragment, useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 import CartItem from "../cart-item/CartItem";
-import { actions, store } from "../state/state";
 import "./Cart.css";
 function Cart() {
-  const { state, dispatch } = useContext(store);
+  const {
+    cartState: { cartItems },
+  } = useCart();
   const total = useMemo(() => {
-    return state.cartItems.reduce((acc, product) => {
+    return cartItems.reduce((acc, product) => {
       return acc + product.price;
     }, 0);
-  }, [state.cartItems]);
+  }, [cartItems]);
 
-  if (state.cartItems.length === 0) {
+  if (cartItems.length === 0) {
     return (
       <div className="cart-empty flex items-center flex-column">
         <h2>Your cart is empty</h2>
@@ -22,7 +24,7 @@ function Cart() {
     );
   }
 
-  const cartItemsEle = state.cartItems.map((product) => (
+  const cartItemsEle = cartItems.map((product) => (
     <CartItem key={product.productId} product={product} />
   ));
   return (

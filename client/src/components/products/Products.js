@@ -1,36 +1,50 @@
-import { useCallback, useContext } from "react";
+import { useState } from "react";
+import { useProduct } from "../../hooks/useProduct";
 import useProducts from "../../hooks/useProducts";
 import ProductItem from "../product-item/ProductItem";
-import { actions, store } from "../state/state";
 import VirtualInfiniteScroll from "../virtual-infinite-scroll/VirtualInfiniteScroll";
 import "./Products.css";
 
 function Products() {
+  const [filterQuery, setFilterQuery] = useState(0);
   const { data: products, isLoading } = useProducts();
-  const { state, dispatch } = useContext(store);
-
-  const handleLastRow = useCallback(() => {
-    dispatch({ type: actions.SET_PRODUCTS_CNT });
-  }, [dispatch]);
+  const { productState, setVisibleProductsCnt } = useProduct();
 
   if (isLoading) {
     return <div className="loader text-center">Loading...</div>;
   }
 
-  const productsInRange = products.slice(0, state.productsLimit);
+  let productsInRange = products.slice(0, productState.productsLimit);
+
+  if (filterQuery > 0) {
+    productsInRange = productsInRange.filter(
+      (product) => product.price > filterQuery
+    );
+  }
 
   const renderedProducts = productsInRange.map((product) => (
     <ProductItem product={product} />
   ));
 
   return (
-    <div className="products-container">
-      <VirtualInfiniteScroll
-        onLastRow={handleLastRow}
-        items={renderedProducts}
-        lastRowHandler={handleLastRow}
-      />
-    </div>
+    <>
+      <div className="flex justify-center">
+        <input
+          type="number"
+          placeholder="Search"
+          onChange={(event) => {
+            setFilterQuery(event.target.value);
+          }}
+          value={filterQuery}
+        />
+      </div>
+      <div className="products-container">
+        <VirtualInfiniteScroll
+          items={renderedProducts}
+          lastRowHandler={setVisibleProductsCnt}
+        />
+      </div>
+    </>
   );
 }
 

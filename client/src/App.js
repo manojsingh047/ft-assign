@@ -1,10 +1,13 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import Products from "./components/products/Products";
-import { StateProvider } from "./components/state/state";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Cart from "./components/cart/Cart";
 import Home from "./components/home/Home";
+import reducers from "./components/state/reducers";
+import { PRODUCTS_INITIAL_STATE } from "./components/state/products/reducer";
+import { CART_INITIAL_STATE } from "./components/state/cart/reducer";
+import { StateProvider } from "./components/state";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,9 +20,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const initialState = {
+    productsState: PRODUCTS_INITIAL_STATE,
+    cartState: CART_INITIAL_STATE,
+  };
   return (
-    <StateProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <StateProvider initialState={initialState} reducers={reducers}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />}>
@@ -29,8 +36,8 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </QueryClientProvider>
-    </StateProvider>
+      </StateProvider>
+    </QueryClientProvider>
   );
 }
 

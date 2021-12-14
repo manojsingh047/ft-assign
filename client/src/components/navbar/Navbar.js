@@ -1,10 +1,11 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { store } from "../state/state";
+import { useCart } from "../../hooks/useCart";
 import "./Navbar.css";
 
 function Navbar() {
-  const { state } = useContext(store);
+  const {
+    cartState: { cartItems },
+  } = useCart();
 
   return (
     <header className="navbar-container">
@@ -15,7 +16,7 @@ function Navbar() {
 
         <Link to="cart">
           <div className="border-radius navbar-cart pointer transition-duration">
-            Cart ({state.cartItems.length})
+            Cart ({cartItems.length})
           </div>
         </Link>
       </div>

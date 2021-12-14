@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { actions, store } from "../state/state";
+import { useCart } from "../../hooks/useCart";
 import "./ProductItem.css";
 function ProductItem({ product }) {
-  const { dispatch } = useContext(store);
+  const { setCartItem } = useCart();
 
   return (
     <div
@@ -10,7 +9,7 @@ function ProductItem({ product }) {
       key={product.productId}
     >
       <div className="product-img">
-        <img src={product.searchImage} />
+        <img src={product.searchImage} alt={product.additionalInfo} />
       </div>
       <div className="product-info text-center">
         <p>{product.brand}</p>
@@ -22,7 +21,7 @@ function ProductItem({ product }) {
           <button
             className="border-radius product-add-cart pointer"
             onClick={() => {
-              dispatch({ type: actions.ADD_ITEMS_TO_CART, payload: product });
+              setCartItem(product);
             }}
           >
             Add to cart

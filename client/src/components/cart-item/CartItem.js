@@ -1,9 +1,7 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { actions, store } from "../state/state";
+import { useCart } from "../../hooks/useCart";
 import "./CartItem.css";
 function CartItem({ product }) {
-  const { state, dispatch } = useContext(store);
+  const { removeCartItem } = useCart();
 
   return (
     <>
@@ -24,10 +22,7 @@ function CartItem({ product }) {
         <button
           className="border-radius cart-add-cart pointer"
           onClick={() => {
-            dispatch({
-              type: actions.REMOVE_ITEMS_FROM_CART,
-              payload: product.productId,
-            });
+            removeCartItem(product.productId);
           }}
         >
           Remove
