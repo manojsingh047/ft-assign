@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { useStateValue } from "../components/state";
 import { setProductsCnt } from "../components/state/products/actions";
-// import { SET_PRODUCTS_CNT } from "../components/state/products/actions";
 export const useProduct = () => {
   const { state, dispatch } = useStateValue();
   const setVisibleProductsCnt = useCallback(() => {
@@ -9,7 +8,7 @@ export const useProduct = () => {
   }, [dispatch]);
 
   return {
-    productState: state.productsState,
+    productsState: state.productsState,
     setVisibleProductsCnt,
   };
 };
