@@ -16,7 +16,7 @@ function ProductItem({ product }) {
         <p>
           {product.additionalInfo} ({product.productId})
         </p>
-        <div className="product-price-cart flex space-bw">
+        <div className="product-price-cart flex space-around">
           <span className="strong ">Rs {product.price}</span>
           <button
             className="border-radius product-add-cart pointer"

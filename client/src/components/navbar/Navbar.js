@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <header className="navbar-container">
-      <div className="navbar flex justify-between items-center">
+      <div className="navbar flex space-bw items-center">
         <Link to="/">
           <div className="navbar-brand">FT ASSIGN</div>
         </Link>

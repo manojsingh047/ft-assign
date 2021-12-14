@@ -45,9 +45,6 @@ button {
 .justify-center {
   justify-content: center;
 }
-.justify-between {
-  justify-content: space-between;
-}
 .pointer {
   cursor: pointer;
 }
@@ -62,6 +59,9 @@ button {
 }
 .space-bw {
   justify-content: space-between;
+}
+.space-around {
+  justify-content: space-around;
 }
 .strong {
   font-weight: bold;
