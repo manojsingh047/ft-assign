@@ -33,7 +33,7 @@ function Cart() {
         <Link to="/">Back</Link>
       </h4>
       <div className="cart-container flex flex-column items-center">
-        <h2 className="text-center">Cart Items, Total Price - {total}</h2>
+        <h2 className="text-center">Cart Items, Total Price - Rs {total}</h2>
         <div className="cart-body">{cartItemsEle}</div>
       </div>
     </>
