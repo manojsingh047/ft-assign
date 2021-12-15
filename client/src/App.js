@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Cart from "./components/cart/Cart";
 import Home from "./components/home/Home";
-import reducers from "./components/state/reducers";
-import { APP_INITIAL_STATE, StateProvider } from "./components/state";
+import reducers from "./state/reducers";
+import { APP_INITIAL_STATE, StateProvider } from "./state";
 
 const queryClient = new QueryClient({
   defaultOptions: {

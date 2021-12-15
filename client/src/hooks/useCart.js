@@ -1,9 +1,6 @@
 import { useCallback } from "react";
-import { useStateValue } from "../components/state";
-import {
-  addItemsToCart,
-  removeItemsFromCart,
-} from "../components/state/cart/actions";
+import { useStateValue } from "../state";
+import { addItemsToCart, removeItemsFromCart } from "../state/cart/actions";
 export const useCart = () => {
   const { state, dispatch } = useStateValue();
   const setCartItem = useCallback(
