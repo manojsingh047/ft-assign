@@ -1,6 +1,6 @@
 import { SET_PRODUCTS_CNT } from "./actions";
 
-const PRODUCTS_CNT = 20;
+const PRODUCTS_CNT = 10;
 
 export const PRODUCTS_INITIAL_STATE = {
   productsLimit: PRODUCTS_CNT,

@@ -4,8 +4,8 @@ export const useCurrentView = () => {
   const [inView, setInView] = useState(false);
   const [ref, setRef] = useState(null);
 
-  const handleIntersection = (entries) => {
-    setInView(entries[0].isIntersecting);
+  const handleIntersection = ([entry]) => {
+    setInView(entry.isIntersecting);
   };
 
   useEffect(() => {
